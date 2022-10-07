@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "UCKbDIKwgeqvZHCO5KZDPtgtpxbh3R1jyPfxGf395yk=",
+  "Source": "Mind.WebApi",
+  "BasePath": "_content/Mind.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

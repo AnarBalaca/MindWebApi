@@ -1,0 +1,12 @@
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\bin\Debug\net6.0\Mind.Entity.deps.json
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\bin\Debug\net6.0\Mind.Entity.dll
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\bin\Debug\net6.0\Mind.Entity.pdb
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\obj\Debug\net6.0\Mind.Entity.csproj.AssemblyReference.cache
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\obj\Debug\net6.0\Mind.Entity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\obj\Debug\net6.0\Mind.Entity.AssemblyInfoInputs.cache
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\obj\Debug\net6.0\Mind.Entity.AssemblyInfo.cs
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\obj\Debug\net6.0\Mind.Entity.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\obj\Debug\net6.0\Mind.Entity.dll
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\obj\Debug\net6.0\refint\Mind.Entity.dll
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\obj\Debug\net6.0\Mind.Entity.pdb
+C:\Users\ASUS\Desktop\Mind.WebApi\Mind.Entity\obj\Debug\net6.0\ref\Mind.Entity.dll
