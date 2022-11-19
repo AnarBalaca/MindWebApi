@@ -30,6 +30,9 @@ namespace Mind.Data.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Firstname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsPsycho = table.Column<bool>(type: "bit", nullable: false),
+                    Mailadress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Age = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -57,7 +60,9 @@ namespace Mind.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ExperienceYear = table.Column<int>(type: "int", nullable: false),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
                     TherapyPrice = table.Column<double>(type: "float", nullable: false),
+                    LocalAdress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)

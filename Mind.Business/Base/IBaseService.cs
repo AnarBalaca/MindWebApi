@@ -13,7 +13,7 @@ namespace Mind.Business.Base
         Task<TGet> Get(int id);
         Task<List<TGet>> GetAll();
         Task Create(TCreate entity);
-        Task Update(int id , TUpdate entity);
+        Task Update(int id ,TUpdate entity);
         Task Delete(int id);
     }
 }

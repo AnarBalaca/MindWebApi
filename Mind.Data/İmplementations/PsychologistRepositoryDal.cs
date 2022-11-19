@@ -8,13 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mind.Data.İmplementations
-{
-    public class PsychologistRepositoryDal : EFEntityRepositoryBase<Psychologist , AppDbContext> , IPsychologistDal
-    {
-        public PsychologistRepositoryDal(AppDbContext context) : base(context)
-        {
+namespace Mind.Data.İmplementations;
 
-        }
-    }
+public class PsychologistRepositoryDal : EFEntityRepositoryBase<Psychologist , AppDbContext> , IPsychologistDal
+{
+    public PsychologistRepositoryDal(AppDbContext context) : base(context){}
 }

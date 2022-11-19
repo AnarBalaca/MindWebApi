@@ -1,8 +1,15 @@
-﻿namespace Mind.Business.Dto.User;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class UserData
+namespace Mind.Business.Dto.User
 {
-    public string? Id { get; set; }
-    public string? Username { get; set; }
-    public string? Email { get; set; }
+    public class UserData
+    {
+        public string? Id { get; set; }
+        public string? UserName { get; set; }
+        public string? Email { get; set; }
+    }
 }

@@ -8,11 +8,9 @@ namespace Mind.Entity.Dto.Psychologist
 {
     public class PsychologistUpdateDto
     {
-        public string? Name { get; set; }
-        public string? Surename { get; set; }
-        public double Price { get; set; }
-        public int ExperienceYear { get; set; }
-        public double TherapyPrice { get; set; }
-        public string? ImageName { get; set; }
+        public int? ExperienceYear { get; set; }
+        public int? PhoneNumber { get; set; }
+        public double? TherapyPrice { get; set; }
+        public string? LocalAdress { get; set; }    
     }
 }

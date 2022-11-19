@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Mind.Core.EFRepository
 {
-    public class EFEntityRepositoryBase<TEntity , TContext> : IEntityRepositoryBase<TEntity>
+    public class EFEntityRepositoryBase<TEntity, TContext> : IEntityRepositoryBase<TEntity>
         where TEntity : class, IEntity, new()
         where TContext : DbContext
     {
@@ -20,19 +20,14 @@ namespace Mind.Core.EFRepository
             _context = context;
         }
 
-        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>>? expression , int? skip = 0 ,  params string[] includes )
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>>? expression , params string[] includes )
         {
             var query = expression == null ?
 
             _context.Set<TEntity>().AsNoTracking() :
             _context.Set<TEntity>().Where(expression).AsNoTracking();
 
-            if (skip != null)
-            {
-                query.Skip((int)skip);
-
-            }
-
+          
             if (includes != null)
             {
                 foreach (var item in includes)
@@ -103,6 +98,12 @@ namespace Mind.Core.EFRepository
             entry.State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
 
     }
 }

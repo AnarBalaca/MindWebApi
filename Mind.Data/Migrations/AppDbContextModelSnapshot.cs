@@ -155,6 +155,42 @@ namespace Mind.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Mind.Entity.Entities.Blog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AuthorName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Blog");
+                });
+
             modelBuilder.Entity("Mind.Entity.Entities.Image", b =>
                 {
                     b.Property<int>("Id")
@@ -163,13 +199,18 @@ namespace Mind.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("BlogId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PsychologistId")
+                    b.Property<int?>("PsychologistId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BlogId");
 
                     b.HasIndex("PsychologistId");
 
@@ -187,19 +228,32 @@ namespace Mind.Data.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ExperienceYear")
+                    b.Property<int?>("ExperienceYear")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<double>("TherapyPrice")
+                    b.Property<string>("LocalAdress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("TherapyPrice")
                         .HasColumnType("float");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Psychologists");
                 });
@@ -210,6 +264,9 @@ namespace Mind.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -226,6 +283,12 @@ namespace Mind.Data.Migrations
                     b.Property<string>("Firstname")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPsycho")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 
@@ -234,6 +297,9 @@ namespace Mind.Data.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Mailadress")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -251,6 +317,9 @@ namespace Mind.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("ProfileImageId")
+                        .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -271,6 +340,8 @@ namespace Mind.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("ProfileImageId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -326,20 +397,63 @@ namespace Mind.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Mind.Entity.Entities.Blog", b =>
+                {
+                    b.HasOne("Mind.Entity.Identity.AppUser", "User")
+                        .WithMany("Blog")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Mind.Entity.Entities.Image", b =>
                 {
+                    b.HasOne("Mind.Entity.Entities.Blog", "Blog")
+                        .WithMany("Images")
+                        .HasForeignKey("BlogId");
+
                     b.HasOne("Mind.Entity.Entities.Psychologist", "Psychologist")
                         .WithMany("Image")
-                        .HasForeignKey("PsychologistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PsychologistId");
+
+                    b.Navigation("Blog");
 
                     b.Navigation("Psychologist");
                 });
 
             modelBuilder.Entity("Mind.Entity.Entities.Psychologist", b =>
                 {
+                    b.HasOne("Mind.Entity.Identity.AppUser", "User")
+                        .WithOne("Psychologist")
+                        .HasForeignKey("Mind.Entity.Entities.Psychologist", "UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Mind.Entity.Identity.AppUser", b =>
+                {
+                    b.HasOne("Mind.Entity.Entities.Image", "ProfileImage")
+                        .WithMany()
+                        .HasForeignKey("ProfileImageId");
+
+                    b.Navigation("ProfileImage");
+                });
+
+            modelBuilder.Entity("Mind.Entity.Entities.Blog", b =>
+                {
+                    b.Navigation("Images");
+                });
+
+            modelBuilder.Entity("Mind.Entity.Entities.Psychologist", b =>
+                {
                     b.Navigation("Image");
+                });
+
+            modelBuilder.Entity("Mind.Entity.Identity.AppUser", b =>
+                {
+                    b.Navigation("Blog");
+
+                    b.Navigation("Psychologist");
                 });
 #pragma warning restore 612, 618
         }
